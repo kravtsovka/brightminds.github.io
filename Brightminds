@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bright Minds — Early Learning Centre | Calgary</title>
+  <meta name="description" content="Bright Minds — development centre for children aged 4–8 in Calgary, Alberta. Play-based learning, small groups, caring teachers." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌟</text></svg>">
+
+  <style>
+    /* ---------- Base / Reset ---------- */
+    :root{
+      --bg: #fbf9ff;
+      --card: #ffffff;
+      --muted: #6b7280;
+      --accent: #7ec8ff;
+      --accent-2: #ffd47e;
+      --shadow: 0 6px 18px rgba(21,24,40,0.08);
+      --radius: 14px;
+      --max-width: 1000px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color-scheme: light;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: linear-gradient(180deg, var(--bg) 0%, #fff 100%);
+      color:#0f1724;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ---------- Layout ---------- */
+    .container{
+      width: 92%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    header{
+      position: sticky;
+      top: 12px;
+      z-index: 60;
+      backdrop-filter: blur(6px);
+      margin: 12px 0;
+    }
+    .nav {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      background: rgba(255,255,255,0.6);
+      padding: 10px 14px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+    .brand {
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .logo {
+      width:44px;
+      height:44px;
+      border-radius:10px;
+      display:grid;
+      place-items:center;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff;
+      font-weight:700;
+      box-shadow:0 6px 16px rgba(126,200,255,0.2);
+    }
+    nav ul{display:flex;gap:14px;align-items:center;margin:0;padding:0;list-style:none}
+    nav a{font-weight:600;color:#0f1724;opacity:.85}
+    .cta {
+      background:#0f1724;color:#fff;padding:8px 12px;border-radius:10px;font-weight:700;font-size:14px;
+      box-shadow: 0 6px 12px rgba(15,23,36,0.08);
+    }
+    /* mobile hamburger */
+    .hamburger{display:none;border:0;background:transparent;font-size:20px}
+    @media (max-width:720px){
+      nav ul{display:none}
+      .hamburger{display:block}
+      .nav{padding:10px}
+    }
+
+    /* ---------- Hero ---------- */
+    .hero{
+      margin-top:18px;
+      padding:34px;
+      border-radius:20px;
+      background:
+        radial-gradient(1200px 400px at -10% 10%, rgba(126,200,255,0.12), transparent 10%),
+        radial-gradient(800px 300px at 110% 90%, rgba(255,212,126,0.08), transparent 10%),
+        linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.95));
+      box-shadow: var(--shadow);
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap:24px;
+      align-items:center;
+    }
+    .hero-left h1{margin:0;font-size:28px}
+    .hero-left p{color:var(--muted);margin:12px 0 18px}
+    .hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .btn { padding:10px 14px;border-radius:10px;font-weight:700; border:0; cursor:pointer; }
+    .btn-primary{ background: linear-gradient(90deg,var(--accent), #5fc4ea); color:#042033; }
+    .btn-ghost{ background:transparent; border:1px solid rgba(15,23,36,0.06); color:var(--muted) }
+
+    .hero-right{
+      background: linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0.9));
+      border-radius:12px;padding:16px;
+    }
+    .feature{
+      display:flex;gap:12px;align-items:center;margin-bottom:12px;
+    }
+    .feature .dot{
+      width:48px;height:48px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      color:#042033;font-weight:700;
+    }
+
+    /* ---------- Sections ---------- */
+    section{margin:28px 0;padding:10px 0}
+    .card{
+      background:var(--card);
+      padding:18px;border-radius:14px;box-shadow:var(--shadow)
+    }
+
+    /* Programs grid */
+    .programs{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;
+    }
+    .program{
+      padding:14px;border-radius:12px;background:linear-gradient(180deg,#fff,#fcfcff);
+      border:1px solid rgba(15,23,36,0.03);
+    }
+    .program h4{margin:4px 0 8px}
+    .muted{color:var(--muted);font-size:14px}
+
+    /* Gallery */
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+    .placeholder{
+      height:100px;border-radius:10px;background:linear-gradient(135deg,#f1f7ff,#fff4e1);
+      display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:700;
+      border:1px dashed rgba(15,23,36,0.04);
+    }
+
+    /* Contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:start}
+    @media (max-width:880px){
+      .hero{grid-template-columns: 1fr; padding:20px}
+      .contact-grid{grid-template-columns:1fr}
+    }
+
+    input, textarea{
+      width:100%;padding:10px;border-radius:10px;border:1px solid rgba(15,23,36,0.06);font-size:15px;
+      resize:vertical;background:#fff;
+    }
+    label{display:block;margin-bottom:6px;font-weight:600;font-size:13px}
+    .note{font-size:13px;color:var(--muted)}
+
+    footer{margin:24px 0 48px;text-align:center;color:var(--muted);font-size:14px}
+
+    /* Smooth scroll & focus */
+    html { scroll-behavior: smooth; }
+    a:focus, button:focus, input:focus { outline:3px solid rgba(126,200,255,0.18); outline-offset:3px; }
+
+  </style>
+</head>
+<body>
+
+  <!-- Header / Navigation -->
+  <header class="container">
+    <div class="nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">BM</div>
+        <div>
+          <div style="font-weight:800">Bright Minds</div>
+          <div style="font-size:13px;color:var(--muted)">Early Learning • Calgary</div>
+        </div>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact" class="cta">Contact</a></li>
+        </ul>
+      </nav>
+
+      <button class="hamburger" aria-label="Menu" onclick="toggleMobileMenu()">☰</button>
+    </div>
+    <!-- Mobile menu (hidden by CSS by default) -->
+    <div id="mobileMenu" style="display:none;margin-top:10px">
+      <div style="background:rgba(255,255,255,0.9);padding:10px;border-radius:10px;box-shadow:var(--shadow)">
+        <a href="#home" onclick="toggleMobileMenu()">Home</a><br>
+        <a href="#about" onclick="toggleMobileMenu()">About</a><br>
+        <a href="#programs" onclick="toggleMobileMenu()">Programs</a><br>
+        <a href="#gallery" onclick="toggleMobileMenu()">Gallery</a><br>
+        <a href="#contact" class="cta" onclick="toggleMobileMenu()">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- HERO -->
+    <section id="home" class="hero" aria-labelledby="hero-heading">
+      <div class="hero-left">
+        <h1 id="hero-heading">Bright Minds — Early Learning Centre</h1>
+        <p>Play-based learning for curious children aged <strong>4–8</strong>. Small groups, caring teachers, and a focus on social, emotional, and cognitive growth in Calgary, Alberta.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" onclick="scrollToSection('programs')">See Programs</button>
+          <button class="btn btn-ghost" onclick="scrollToSection('contact')">Contact Us</button>
+        </div>
+
+        <div style="margin-top:18px" class="note">This page is a starter template — replace texts, photos and contact info anytime.</div>
+      </div>
+
+      <aside class="hero-right" aria-hidden="true">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div class="feature card">
+            <div style="display:flex;gap:12px;align-items:center">
+              <div class="dot">⭐</div>
+              <div>
+                <div style="font-weight:800">Play-based learning</div>
+                <div class="muted">Active lessons that develop creativity & thinking.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature card">
+            <div style="display:flex;gap:12px;align-items:center">
+              <div class="dot">👩‍🏫</div>
+              <div>
+                <div style="font-weight:800">Qualified staff</div>
+                <div class="muted">Safe, loving environment with experienced educators.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature card">
+            <div style="display:flex;gap:12px;align-items:center">
+              <div class="dot">🏫</div>
+              <div>
+                <div style="font-weight:800">Convenient in Calgary</div>
+                <div class="muted">Small groups and flexible schedules.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="card">
+        <h2>About Bright Minds</h2>
+        <p class="muted">Bright Minds is a development centre focused on playful and purposeful learning for children ages 4 to 8 in Calgary, Alberta. Our curriculum blends social-emotional learning, early literacy, numeracy, and hands-on exploration through games, art and movement.</p>
+
+        <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
+          <div style="min-width:220px;padding:12px;border-radius:10px;background:linear-gradient(180deg,#fff,#f9fafd);box-shadow:var(--shadow)">
+            <strong>Mission</strong>
+            <div class="muted" style="margin-top:6px">To nurture confident, curious children ready for school and life.</div>
+          </div>
+
+          <div style="min-width:220px;padding:12px;border-radius:10px;background:linear-gradient(180deg,#fff,#fff7f2);box-shadow:var(--shadow)">
+            <strong>Approach</strong>
+            <div class="muted" style="margin-top:6px">Small groups, individualized attention, play-first activities.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAMS -->
+    <section id="programs">
+      <div class="card">
+        <h2>Our Programs</h2>
+        <p class="muted">Programs designed for early learners — adapt these descriptions later to match your offerings.</p>
+
+        <div class="programs" style="margin-top:12px">
+          <div class="program">
+            <h4>Explorer Club (Ages 4–5)</h4>
+            <div class="muted">Play-based introduction to school routines, early literacy through stories, and social games.</div>
+            <div style="margin-top:8px;font-weight:700">Schedule: <span class="muted">M/W/F mornings (example)</span></div>
+          </div>
+
+          <div class="program">
+            <h4>Discovery (Ages 5–6)</h4>
+            <div class="muted">Hands-on science, creative art projects, and foundational math concepts through play.</div>
+            <div style="margin-top:8px;font-weight:700">Schedule: <span class="muted">T/Th afternoons (example)</span></div>
+          </div>
+
+          <div class="program">
+            <h4>Ready for Grade 1 (Ages 6–8)</h4>
+            <div class="muted">School-readiness program focusing on literacy, numeracy, and confidence-building.</div>
+            <div style="margin-top:8px;font-weight:700">Schedule: <span class="muted">Multiple options (example)</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery">
+      <div class="card">
+        <h2>Gallery</h2>
+        <p class="muted">Images coming soon — replace the placeholders with photos of your space and activities.</p>
+        <div class="gallery" style="margin-top:12px">
+          <div class="placeholder">Photo 1</div>
+          <div class="placeholder">Photo 2</div>
+          <div class="placeholder">Photo 3</div>
+          <div class="placeholder">Photo 4</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="card">
+        <h2>Contact Us</h2>
+        <div class="contact-grid" style="margin-top:10px">
+
+          <!-- Left: form -->
+          <div>
+            <form id="contactForm" onsubmit="handleFormSubmit(event)">
+              <div style="display:grid;gap:12px">
+                <div>
+                  <label for="name">Your name</label>
+                  <input id="name" type="text" placeholder="Parent's name or your name" required>
+                </div>
+
+                <div>
+                  <label for="childAge">Child's age</label>
+                  <input id="childAge" type="text" placeholder="e.g., 4" >
+                </div>
+
+                <div>
+                  <label for="message">Message</label>
+                  <textarea id="message" rows="4" placeholder="Tell us about your needs or ask a question"></textarea>
+                </div>
+
+                <div>
+                  <button type="submit" class="btn btn-primary">Send inquiry</button>
+                  <div id="formNote" class="note" style="margin-top:8px">No email set yet — the form will show instructions after you click Send. You can later add your centre email in the site's code.</div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Right: contact card -->
+          <aside style="min-width:200px">
+            <div style="padding:12px;border-radius:12px;background:linear-gradient(180deg,#fff,#f7fbff);box-shadow:var(--shadow)">
+              <strong>Bright Minds — Calgary</strong>
+              <div class="muted" style="margin-top:8px">Address: (add your address)</div>
+              <div style="margin-top:8px">
+                <div class="muted">Phone</div>
+                <div style="font-weight:700;margin-top:6px">Add phone later</div>
+              </div>
+
+              <div style="margin-top:12px">
+                <div class="muted">Email</div>
+                <div id="emailPlaceholder" style="font-weight:700;margin-top:6px">No email set</div>
+                <div class="note" style="margin-top:8px">When you have an email, open <code>index.html</code> and set the site email in the <code>data-contact-email</code> attribute on the <code>body</code> tag. See top of file comments.</div>
+              </div>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Bright Minds — Early Learning Centre · Calgary, AB
+    </footer>
+
+  </main>
+
+  <script>
+    /* ===========================
+       Small JS for interactivity
+       =========================== */
+
+    // Put a data attribute here so it's easy to update.
+    // When you have an email, set it like: <body data-contact-email="hello@brightminds.ca">
+    // Or update the "siteEmail" variable below to your email address.
+    const siteEmail = "";
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    function toggleMobileMenu(){
+      const el = document.getElementById('mobileMenu');
+      el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none';
+    }
+
+    function scrollToSection(id){
+      const el = document.getElementById(id);
+      if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+
+    // Form handling: since there's no email yet, we'll show instructions and copy the form content to clipboard
+    function handleFormSubmit(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const age = document.getElementById('childAge').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      // If siteEmail exists, open mailto (simple)
+      const emailToUse = siteEmail || document.body.getAttribute('data-contact-email') || "";
+
+      if(emailToUse){
+        // open mailto with subject and body
+        const subject = encodeURIComponent('Bright Minds inquiry from ' + (name || 'parent'));
+        const body = encodeURIComponent(`Name: ${name}\nChild age: ${age}\n\nMessage:\n${message}`);
+        window.location.href = `mailto:${emailToUse}?subject=${subject}&body=${body}`;
+        return;
+      }
+
+      // Otherwise: copy content to clipboard and show friendly message for admin
+      const content = `Bright Minds inquiry\nName: ${name}\nChild age: ${age}\nMessage:\n${message}`;
+      copyToClipboard(content).then(()=>{
+        alert("Your message was copied to clipboard.\n\nThis demo site doesn't have an email configured yet. To enable sending, update the site email in the code (see instructions). For now, paste this into your email or send via phone/email.");
+      }).catch(()=>{
+        alert("Please copy this message manually:\n\n" + content);
+      });
+    }
+
+    async function copyToClipboard(text){
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        return navigator.clipboard.writeText(text);
+      } else {
+        // fallback
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        return Promise.resolve();
+      }
+    }
+
+    // On load: show email if set
+    (function showEmailPlaceholder(){
+      const emailEl = document.getElementById('emailPlaceholder');
+      const email = siteEmail || document.body.getAttribute('data-contact-email') || "";
+      if(email) emailEl.textContent = email;
+      else emailEl.textContent = "No email set — configure in index.html";
+    })();
+
+  </script>
+
+  <!--
+    NOTES / QUICK EDIT GUIDE
+    -----------------------
+    • To set a contact email (so form opens the user's email client), edit the top of this file:
+        - set const siteEmail = "hello@brightminds.ca";
+      or add an attribute to the <body> tag like:
+        <body data-contact-email="hello@brightminds.ca">
+      After that, the contact form will open a mailto: link.
+
+    • To replace gallery placeholders:
+        - Find the .placeholder divs and replace with:
+            <img src="images/photo1.jpg" alt="Kids playing" style="width:100%;height:100%;object-fit:cover;border-radius:10px">
+      Or upload images to your repo and use those paths.
+
+    • To change the title/logo text: update the <title> and the .brand section.
+    • To deploy: push to a GitHub repo named yourusername.github.io and enable Pages.
+
+    • If you later want your own domain (e.g., brightmindscalgary.ca), you can buy a domain and add it in GitHub Pages settings or configure DNS to point to GitHub Pages.
+  -->
+
+</body>
+</html>
